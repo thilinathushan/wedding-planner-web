@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\HasOne;
 
 class Couple extends Model
 {
@@ -24,5 +25,11 @@ class Couple extends Model
     public function user2(): BelongsTo
     {
         return $this->belongsTo(User::class, 'user2_id');
+    }
+
+    // Get the pending invitation associated with the couple.
+    public function invitation(): HasOne
+    {
+        return $this->hasOne(PartnerInvite::class);
     }
 }

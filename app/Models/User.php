@@ -54,4 +54,12 @@ class User extends Authenticatable
     {
         return $this->hasOne(Couple::class, 'user1_id');
     }
+
+    /**
+     * Get the couple record where this user is the invited partner (user2).
+     */
+    public function joinedCouple(): HasOne
+    {
+        return $this->hasOne(Couple::class, 'user2_id');
+    }
 }
