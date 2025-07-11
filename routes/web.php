@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Couple\CoupleOnboardingController;
+use App\Http\Controllers\Dashboard\DashboardController;
 use App\Http\Middleware\EnsureCoupleIsSetUp;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -10,9 +11,9 @@ Route::get('/', function () {
     return Inertia::render('Welcome');
 })->name('home');
 
-Route::get('dashboard', function () {
-    return Inertia::render('Dashboard');
-})->middleware(['auth', 'verified', EnsureCoupleIsSetUp::class])->name('dashboard');
+Route::controller(DashboardController::class)->group(function () {
+    Route::get('/dashboard', 'index')->name('dashboard');
+})->middleware(['auth', 'verified', EnsureCoupleIsSetUp::class]);
 
 Route::controller(CoupleOnboardingController::class)->group(function () {
     Route::get('/onboarding/setup', 'create')->name('onboarding.create');

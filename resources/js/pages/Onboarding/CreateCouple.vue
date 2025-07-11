@@ -86,10 +86,10 @@ const submit = async () => {
     }
 
     form.post(route('onboarding.store'), {
-        onFinish: () => {
-            form.reset('wedding_date', 'partner_email');
-            value.value = undefined;
-        },
+        // onFinish: () => {
+        //     form.reset('wedding_date', 'partner_email');
+        //     value.value = undefined;
+        // },
     });
 };
 </script>
